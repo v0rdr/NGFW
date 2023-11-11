@@ -1,0 +1,3 @@
+alert tcp any any -> 1.1.1.1 80,443 (msg:"CUSTOM - HTTP traffic to 1.1.1.1 spotted"; flow: established; threshold: type limit, track by_src, count 1, seconds 60; sid:1; rev:1;)
+alert tcp any any -> any any (msg:"CUSTOM - NICK Malware Suspected"; content:"NICK"; flow:established; threshold: type limit, track by_src, count 1, seconds 60; sid:2; rev:1;)
+alert ip $HOME_NET any -> any any (msg:"CUSTOM - IPREP BLOCKLIST"; iprep:dst,Custom,>,0; threshold: type limit, track by_src, count 1, seconds 60; sid:3; rev:1;)
